@@ -1,0 +1,137 @@
+<div class="about-wrapper">
+
+  <div class="about-text">
+
+    <span class="title highlight">
+      ERC 20 index - a decentralized application on the Ethereum blockchain.
+    </span>
+
+    <div class="paragraph">
+
+      <p>
+        An index fund for top Ethereum tokens.
+      </p>
+      
+      <p>
+        It currently holds {{tokensInfo.length}} tokens for a combined value of 
+        ${{getValue(tokensInfo) | number:'1.2-2'}}.
+      </p>
+      
+    </div>
+
+    <h2>How it works</h2>
+
+    <div class="paragraph">
+
+      <p>
+        The smart contract enables users to deposit DAI into the fund which is
+        then used to purchase assets from the index's portfolio.
+        In return users will receive ERCI tokens which represent their stake in the fund.
+      </p>
+      <p>
+        If there are 100 ERCI issued and a user owns 10 of them - the user owns 10% of every asset in the fund
+      </p>
+      <p>
+        ERCI tokens can be sold back at any time. The smart contract will sell the
+        appropriate ammount of each asset for DAI and return it to the user.
+      </p>
+      
+    </div>
+    
+    <h2>Internal logic</h2>
+    
+    <div class="paragraph">
+
+      <p>
+        Every time ERCI is purchased the contract will calculate the current balance and market
+        capitalization of each token it owns. Based on the order of tokens sorted by their market
+        capitalization the contract will then calculate target balances for every token.
+      </p>
+      <p>
+        The user's DAI is used to purchase the token which has the biggest difference from
+        it's current and target balance. The appropriate ERCI amount is then minted and sent to the user.
+      </p>
+      <p>
+        When ERCI is sold the contract will sell a part of each asset it owns for DAI and send it to the
+        user. The received ERCI tokens are then burned.
+      </p>
+      <p>
+        The contract reads all necessairy data from the blockchain. Token prices are read from the
+        <a target="_blank" rel="noopener noreferrer" href="https://uniswap.io">Uniswap</a>
+        markets and market capitalizations are calculated based on their total
+        supply. No centralized oracle is needed.
+      </p>
+      <p>
+        Since the index calculates tokens capitalizations from total and not circulating supply. The 
+        resulting order might differ from the one showm in centralized sites.
+      </p>
+      <div class="token-table">
+        <div>
+
+          <div *ngFor="let token of tokensCoingecko; let i = index" class="table-row">
+            <span class="name">
+              <img width="18px" height="18px" src="{{token?.image}}" style="margin-right: 8px">
+              {{token.name}}
+            </span>
+          </div>
+          <div class="order">Order as shown in
+            <a target="_blank" rel="noopener noreferrer" href="https://www.coingecko.com/">
+              Coingkecko
+            </a>
+          </div>
+          
+        </div>
+        <div class="arrow"></div>
+        <div>
+          
+          <div *ngFor="let token of tokensContract; let i = index" class="table-row">
+            <span class="name">
+              <img width="18px" height="18px" src="{{token.image}}" style="margin-right: 8px">
+              {{token.name}}
+            </span>
+          </div>
+          <div class="order">Order as calculated by the contract</div>
+
+        </div>
+      </div>
+
+    </div>
+      
+    <h2>Details</h2>
+
+    <div class="paragraph">
+
+      <p>
+        Contract is deployed at address
+        <a target="_blank" rel="noopener noreferrer" href="https://etherscan.io/address/{{address}}">{{address}}</a>.
+      </p>
+  
+      <p>
+        The source code for the contract is available
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/gasperbr/erc20index/">here</a>.
+      </p>
+      <p>
+        The contract's owner has the option to add or remove tokens from the index - no more than 10 tokens can be added to the index.
+        (e.g. the token would be removed in case it will no longer be an erc20 token). In the future
+        the contract will be updated to enable voting for adding & removing tokens from the index.
+      </p>
+      <p>
+        Any old deployments will always be accessable from this site.
+      </p>
+      <p>
+        Only assets with a large Uniswap market will be added.
+      </p>
+      <p>
+        The name 'ERC 20 index' comes from the name of the standard for Ethereum contract tokens 
+        <a target="_blank" rel="noopener noreferrer" href="https://eips.ethereum.org/EIPS/eip-20">ERC 20</a>.
+      </p>
+
+    </div>
+  
+  </div>
+
+  <div class="about-image">
+    <img src="assets/ethereumLogo.png">
+  </div>
+
+</div>

@@ -1,0 +1,85 @@
+:root {
+  // --dark-background: #3d405a;
+  --dark-background: #3f51b5;
+  // --dark-background: #42426e;;
+  --color-contrast: white;
+  --shadow-dark: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  --shadow: 0px 0px 5px -2px var(--dark-background);
+  --shadow-highlight: inset 0 0px 0 #fff, inset 0 -6px #ffd922;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  /* background-color: var(--main-background);
+  color: var(--text-color); */
+  background-color: #fafbff;   
+  margin: 0;
+  height: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* input type number arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+// banner button decoration
+button {
+  margin-right: 0.5rem;
+  &.active {
+    span {
+      text-decoration: underline;
+    }
+  }
+}
+
+// hide tab header
+
+mat-tab-header {
+  height: 0;
+}
+
+
+// yellow underline
+.highlight {
+  box-shadow: var(--shadow-highlight);
+}
+.highlight-secondary {
+  box-shadow: inset 0 1px 0 #fff, inset 0 -6px #dcdef1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.red {
+  color: #e39595!important;
+}
+.green {
+  color: #80ab80!important;
+}
+
+mat-button-toggle-group {
+  margin-left: auto;
+  height: 1.3rem;
+  margin-right: 0.7rem;
+  .mat-button-toggle-label-content {
+    line-height: 1rem!important;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  mat-form-field {
+    width: 130px;
+  }
+}

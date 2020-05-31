@@ -1,0 +1,167 @@
+<div class="home-page">
+
+  <div class="info">
+
+    <div class="contract-info">
+      <div>
+        <span class="title-info erci-info highlight">Token price: {{erciPrice >= 0 ? '$' : ''}}{{erciPrice | number:'1.2-2'}}</span>
+        <span>
+          <span *ngIf="erciPriceChange || erciPriceChange === 0" class="erci-info-7d" [ngClass]="{'green': (erciPriceChange || 0) > 0, 'red': 0 > erciPriceChange }">{{erciPriceChange >= 0 ? '+' : ''}}{{ (erciPriceChange) | number:'1.2-2'}}%</span>
+          <span *ngIf="erciPriceChange || erciPriceChange === 0" class="erci-info-7d d">(7d)</span>
+          <mat-progress-spinner class="title-spinner" *ngIf="!erciPrice && erciPrice !== 0"
+            [color]="'primary'"
+            [diameter]="24"
+            [mode]="'indeterminate'">
+          </mat-progress-spinner>
+        </span>
+      </div>
+      <div>
+        <span class="title-info erci-info highlight">Token supply: {{erciSupply | number:'1.0-2'}} {{ erciSupply >= 0 ? 'ERCI' : ''}}</span>
+        <span>
+          <span *ngIf="erciSupplyChange || erciSupplyChange === 0" class="erci-info-7d" [ngClass]="{'green': (erciSupplyChange || 0) > 0, 'red': 0 > erciSupplyChange }">{{erciSupplyChange >= 0 ? '+' : ''}}{{ (erciSupplyChange) | number:'1.2-2'}}%</span>
+          <span *ngIf="erciSupplyChange || erciSupplyChange === 0" class="erci-info-7d d">(7d)</span>
+          <mat-progress-spinner class="title-spinner" *ngIf="!erciSupply && erciSupply !== 0"
+            [color]="'primary'"
+            [diameter]="24"
+            [mode]="'indeterminate'">
+          </mat-progress-spinner>
+        </span>
+      </div>
+      <div>
+        <span class="title-info erci-info highlight">Fund value: {{fundValue >= 0 ? '$' : ''}}{{fundValue | number:'1.2-2'}}</span>
+        <span>
+          <span *ngIf="fundValueChange || fundValueChange === 0" class="erci-info-7d" [ngClass]="{'green': (fundValueChange || 0) > 0, 'red': 0 > fundValueChange }">{{fundValueChange >= 0 ? '+' : ''}}{{ (fundValueChange) | number:'1.2-2'}}%</span>
+          <span *ngIf="fundValueChange || fundValueChange === 0" class="erci-info-7d d">(7d)</span>
+          <mat-progress-spinner class="title-spinner" *ngIf="!fundValue && fundValue !== 0"
+            [color]="'primary'"
+            [diameter]="24"
+            [mode]="'indeterminate'">
+          </mat-progress-spinner>
+        </span>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    
+    <div class="functions" *ngIf="usersProviderConnected">
+      
+      <div #buy>
+        <div class="set-max-width">
+
+          <mat-form-field>
+            <mat-label>Dai amount</mat-label>
+            <input matInput type="number" #daiInput [formControl]="daiAmount">
+            <mat-error *ngIf="daiAmount.hasError('min')">Amount must be greater than 1.</mat-error>
+            <mat-error *ngIf="daiAmount.hasError('max')">Amount exceeds your balance.</mat-error>
+            <mat-hint *ngIf="daiAmount.value > 0 && erciPrice > 0 && daiPriceUsd > 0">You will receive ~{{((daiAmount.value * daiPriceUsd) / erciPrice) | number:'0.0-2'}} ERCI</mat-hint>
+          </mat-form-field>
+          
+          <button mat-raised-button color="primary" (click)="buyErci()">Buy ERCI</button>
+          
+        </div>
+      </div>
+
+      <div #sell>
+        <div class="set-max-width">
+          <mat-form-field>
+            <mat-label>ERCI amount</mat-label>
+            <input matInput type="number" #erciInput [formControl]="erciAmount">
+            <mat-error *ngIf="erciAmount.hasError('min')">Amount must be greater than 0.</mat-error>
+            <mat-error *ngIf="erciAmount.hasError('max')">Amount exceeds your balance.</mat-error>
+            <mat-hint *ngIf="erciAmount.value > 0 && erciPrice > 0 && daiPriceUsd > 0">You will receive ~{{((erciAmount.value * erciPrice) / daiPriceUsd) | number:'0.0-2'}} DAI</mat-hint>
+          </mat-form-field>
+          
+          <button mat-raised-button color="primary" (click)="sellErci()">Sell ERCI</button>
+        </div>     
+      </div>
+      
+      <div>
+        <div class="set-max-width available">
+
+          <span class="small">My balance:</span>
+          <div class="apart"><span *ngIf="usersFunds" (click)="setMaxValue('dai')" class="cursor-pointer ">{{usersFunds.dai | number:'1.0-2'}} DAI</span>
+            <span class="gray" *ngIf="daiPriceUsd >= 0 && usersFunds">(${{daiPriceUsd * usersFunds.dai | number:'1.2-2'}})</span>
+          </div>
+          <div class="apart"><span *ngIf="usersFunds" (click)="setMaxValue('erci')" class="cursor-pointer highlight-secondary">{{usersFunds.erci | number:'1.0-2'}} ERCI</span>
+            <span class="gray" *ngIf="erciPrice >= 0 && usersFunds">(${{erciPrice * usersFunds.erci | number:'1.2-2'}})</span>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+
+    <div *ngIf="!usersProviderConnected" class="web3-info">
+
+      <div *ngIf="!usersProviderExists">Please install the <a target="_blank" rel="noopener noreferrer" href="https://metamask.io/">MetaMask</a> browser extension to interract with the app.</div>
+      <div *ngIf="usersProviderExists"><a (click)="promptConnection()">Connect to app.</a></div>
+
+    </div>
+
+    <div *ngIf="hash" class="tx-notify">
+      <a class="hash" target="_blank" rel="noopener noreferrer" href="https://etherscan.io/tx/{{hash}}">You have a pending transaction.</a>
+      <mat-progress-spinner class="spinner"
+        [color]="'primary'"
+        [diameter]="24"
+        [mode]="'indeterminate'">
+      </mat-progress-spinner>
+    </div>
+
+  </div>
+  
+  <div class="table-wrapper">
+
+    <div class="table-title">
+      <span>Portfolio</span>
+      <mat-progress-spinner class="spinner" *ngIf="dataLoading"
+        [color]="'primary'"
+        [diameter]="24"
+        [mode]="'indeterminate'">
+      </mat-progress-spinner>
+      <!-- <span class="erci-7d-change">ERCI price
+        <span [ngClass]="{'green': erciChange || 0 > 0, 'red': 0 > erciChange }">{{erciChange >= 0 ? '+' : ''}}{{ erciChange | number:'1.2-2'}}%</span>
+        <span>(7d)</span>
+      </span> -->
+    </div>
+
+    <div class="header-row">
+      <span>Token</span>
+      <span>Price (7d)</span>
+      <!-- <span>Balance</span> -->
+      <span>Current index balance</span>
+      <span>Target index balance</span>
+    </div>
+
+    <div *ngFor="let token of dataSource; let i = index" class="table-row">
+      <span class="name"><img width="18px" height="18px" src="{{tokensInfo[i]?.image}}" style="margin-right: 8px">{{token.name}}</span>
+      <span [ngClass]="{'green': token.priceChange7d > 0, 'red': 0 > token.priceChange7d }">{{token.priceChange7d >= 0 ? '+' : ''}}{{token.priceChange7d | number:'1.2-2'}}%</span>
+      <!-- <span>{{token.balance | number:'1.0-4'}}</span> -->
+      <span>{{fundValue ? ((100 * token.currentValue / fundValue) | number:'1.2-2') + '%' : '/'}}</span>
+      <span>{{fundValue ? ((100 * token.targetValue / fundValue) | number:'1.2-2') + '%' : '/'}}</span>
+    </div>
+  
+  </div>
+
+  <div class="chart-wrapper">
+    <app-chart
+      [initialData]="initialHistory"
+      [isVisible]="isVisible">
+    </app-chart>
+  </div>
+
+  <div class="chart-targets-wrapper">
+    <div class="table-title">
+      <span>Index targets</span>
+      <mat-progress-spinner class="spinner" *ngIf="dataLoading"
+        [color]="'primary'"
+        [diameter]="24"
+        [mode]="'indeterminate'">
+      </mat-progress-spinner>
+    </div>
+    <app-chart-target-values
+      [chartData]="chartTargetValuesData"
+      [isVisible]="isVisible">
+    </app-chart-target-values>
+  </div>
+
+</div>

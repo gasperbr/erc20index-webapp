@@ -1,0 +1,244 @@
+
+.home-page {
+
+  display: grid;
+  grid-template-areas:
+  "a a"
+  "b c"
+  "b d";
+  grid-template-columns: 3fr 4fr;
+  margin: 2rem;
+  margin-bottom: 4rem;
+  grid-gap: 2rem;
+}
+.info {
+
+  grid-area: a;
+  border-radius: 5px;
+  background: white;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  padding: 0.5rem;
+}
+.web3-info {
+  padding: 1rem;
+  a {
+    cursor: pointer;
+    color: var(--dark-background);
+    text-decoration: none;
+  }
+}
+
+// .contract-info > div {
+//   flex-direction: column;
+// }
+
+.functions,
+.contract-info {
+  
+  padding: 1rem 0rem; // nested elements will have right & left padding
+  // padding-right: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  // align-items: center;
+
+  .erci-info {
+    font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  > div {
+    display: flex;
+    flex: 1 1 0;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    // if value is 22rem `Token price $32.00 + 10.00% (7d)` won't break into several lines
+    // only after each title line is in its own row -> min-width = 50vw (aka on mobile view)
+    // start wraping `10.00% (7d)` to the next line because max width isn't set any more
+    min-width: min(18rem, 50vw); 
+    padding: 0.1rem 1rem;
+    .set-max-width {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &.available {
+        max-width: 17.8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 0.5rem;
+        width: 100%;
+        > div {
+          margin-top: 0.3rem;
+        }
+        .apart {
+          display: flex;
+          justify-content: space-between;
+          min-height: 20px;
+        }
+        span.small {
+          color: rgba(0,0,0,.54);
+          font: 500 12px/12px Roboto,"Helvetica Neue",sans-serif;
+        }
+        
+        span {
+          color: rgba(0,0,0,.87);
+          font: 500 16px/20px Roboto,"Helvetica Neue",sans-serif;
+          &.gray {
+            //margin-left: 0.5rem;
+            color: rgba(0,0,0,.54);
+          }
+        }
+      }
+    }
+  }
+}
+
+.functions {
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  //padding-left: 1rem;
+  button {
+    // margin: 1rem 0rem 1.5rem 1rem;
+    margin: 0rem 0rem 0rem 1rem;
+  }
+
+  .available-info {
+    color: rgba(0,0,0,.54);
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.125;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    //font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+  }
+
+}
+
+.chart-targets-wrapper,
+.chart-wrapper,
+.table-wrapper {
+  
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  background-color: white;
+  margin-bottom: auto;
+
+  .table-title {
+    min-height: 3rem;
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    span {
+      display: flex;
+      align-items: center;
+      font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+      margin-right: 1rem;
+    } 
+  }
+
+  .header-row,
+  .table-row {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding-left: 1.5rem;
+    > span {
+      display: flex;
+      flex: 1 1 0;
+      padding-right: 1rem;
+    }
+  }
+
+  .header-row > span {
+    color: rgba(0,0,0,.54);
+    font: 500 12px/12px Roboto,"Helvetica Neue",sans-serif;
+  }
+  
+  .table-row {
+    border-top: 1px solid #e7e7e7;
+    > span {
+      // color: rgba(0,0,0,.87);
+      font: 400 14px/20px Roboto,"Helvetica Neue",sans-serif;
+    }
+  }
+  
+  table {
+    width: 100%;
+  }
+
+}
+
+.table-wrapper {
+  grid-area: b;
+}
+
+.chart-wrapper {
+  grid-area: d;
+}
+
+.chart-targets-wrapper {
+  grid-area: c;
+}
+
+@media only screen and (max-width: 1000px) {
+  .home-page {
+    grid-template-areas: 
+    "a"
+    "b"
+    "c"
+    "d";
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    margin: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  div.info {
+    padding: 0;
+    padding-bottom: 0.5rem;
+  }
+  mat-divider {
+    margin: 0 0.5rem;
+  }
+  /* .contract-info {
+    padding-bottom: 0.5rem;
+  }
+  .functions {
+    padding-
+  } */
+}
+
+.erci-info-7d {
+  color: rgba(0,0,0,.54);
+  margin-left: 0.7rem!important;
+  font-size: 14px!important;
+  line-height: 32px;
+  margin-top: 3px;
+  &.d {
+    margin-left: 0.5rem!important;
+  }
+}
+
+.title-info {
+  white-space: nowrap;
+}
+
+.title-spinner {
+  margin-top: 3px;
+  margin-left: 0.6rem;
+}
+
+.tx-notify {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  margin-top: 0;
+  a.hash {
+    margin: 0rem!important;
+    margin-right: 0.5rem!important;
+    display: block!important;
+    color: var(--dark-background)!important;
+  }
+}

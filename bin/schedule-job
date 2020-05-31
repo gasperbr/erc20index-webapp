@@ -1,0 +1,13 @@
+#! /app/.heroku/node/bin/node
+const axios = require("axios");
+
+function invokeDBlogCall() {
+  axios.post(`https://${process.env.APPNAME}.herokuapp.com/api/history?adminKey=${process.env.ADMINKEY}`, {}).then(() => {
+    console.log('success! created new DB entry.');
+  }).catch(err => {
+    console.log('failure! failure to create db entry');
+    console.log(err);
+  });
+}
+
+invokeDBlogCall();

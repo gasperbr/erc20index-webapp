@@ -1,0 +1,62 @@
+
+<div class="banner" [class.showNavigation]="showNavigation" [class.showNavigationText]="showNavigationText">
+  <div class="chart" [class.show]="chartDataSet">
+    <canvas id="bannerChart"></canvas>
+  </div>
+  <div class="custom" [class.show]="chartDataSet || showNavigation">  
+    <h2>ERCI</h2>
+    <button mat-flat-button (click)="navigateTo(0)" [class.active]="selectedTab.value === 0" color="primary">Home</button>
+    <button mat-flat-button (click)="navigateTo(1)" [class.active]="selectedTab.value === 1" color="primary">About</button>
+  </div>
+  <div class="title">
+    <h1>ERC 20 index</h1>
+    <img src="assets/ethereumLogo.png" width="33px">
+  </div>
+</div>
+<!-- scroll to this element if navigation tabs -->
+<div style="position: relative"><div id="scrollIntoView" style="position: absolute; bottom: 4rem"></div></div>
+<div class="content">
+
+  <mat-tab-group [selectedIndex]="selectedTab.value" [color]="'primary'"  dynamicHeight>
+    
+    <mat-tab label="Home">
+
+      <app-home
+        [tokensInfo]="calculatedTokensInfo"
+        [usersProviderConnected]="usersProviderConnected"
+        [usersProviderExists]="usersProviderExists"
+        [usersFunds]="usersFunds"
+        [usersFundsRaw]="usersFundsRaw"
+        [oldData]="oldData"
+        [initialHistory]="initialHistory"
+        [isVisible]="selectedTab.value === 0"
+        (updateValues)="updateValues()"
+      ></app-home>
+      
+    </mat-tab>
+    
+    <mat-tab label="About">
+      
+      <app-about
+        [tokensInfo]="calculatedTokensInfo"
+      ></app-about>
+      
+    </mat-tab>
+    
+  </mat-tab-group>
+
+</div>
+
+<div class="footer">
+  <div>
+    <small class="text title">Powerd by:</small>
+    <a target="_blank" rel="noopener noreferrer" href="https://uniswap.org/" class="text">Uniswap</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://www.coingecko.com/en" class="text">CoinGecko API</a>
+    <a target="_blank" rel="noopener noreferrer" href="https://infura.io/" class="text">infura</a>
+  </div>
+  <div>
+    <small class="text title">Donation address:</small>
+    <span class="text">0x0Cc7090D567f902F50cB5621a7d6A59874364bA1</span>
+    <span class="text">nano_1ciab3uzyzze4noaaf1b8jm584ifmkfwukter55nted3x3zxiz4cw7wxjgn5</span>
+  </div>
+</div>

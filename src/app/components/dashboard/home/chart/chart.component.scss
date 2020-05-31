@@ -1,0 +1,17 @@
+.chart-wrapper {
+  min-height: 15rem;
+  max-width: calc(100vw - 2rem);
+  margin: auto;
+}
+.table-title {
+  min-height: 3rem;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  span {
+    display: flex;
+    align-items: center;
+    font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+    margin-right: 1rem;
+  } 
+}

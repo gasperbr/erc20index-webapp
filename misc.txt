@@ -1,0 +1,39 @@
+Metadata of "myuniswapproxy" was published successfully.
+browser/MyUniswapProxy.sol : 
+dweb:/ipfs/QmRcNKopMLBR4mgBC33A2yarezHFBnfMsbF8SRNwU5bbUV
+metadata.json : 
+dweb:/ipfs/QmdFnwdDZFJDNdQQoW771Epokdh5U872JUQAMAPUU6sefD
+
+Metadata of "ercindex" was published successfully.
+browser/2_Owner.sol : 
+dweb:/ipfs/QmPrgvRzdFGr8AFaBZXFeHBazuu98cT84zrQ2K3Adi2vke
+browser/ERCIndex.sol : 
+dweb:/ipfs/QmPP38suLBHeaoEuazMFMwsWHcWFHVMVT42Yt14QhDULKU
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/GSN/Context.sol : 
+dweb:/ipfs/QmeJn3zjFpixronHHtiD7ik48aDiQ5HP6hLdDx8UraYka2
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/math/SafeMath.sol : 
+dweb:/ipfs/QmYa2DQvXo9GnpZNX8XQUxeZc8UM6y4xMzVoZZeAzbnWda
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol : 
+dweb:/ipfs/QmReFGciE9fgsb6Nas1Fx593pzKWMjaDa1VQg4CEJQaD6U
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol : 
+dweb:/ipfs/QmX1xDh8vwGLLCH8ti45eXjQ7Wcxv1FEGTR3jkFnd5Nv6F
+https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/Address.sol : 
+dweb:/ipfs/QmVK5iCNAMcEJQxT59bsC5E53JQASDQPU6khHox3d5ZXCn
+metadata.json : 
+dweb:/ipfs/QmdAiUXXH5nKTqukDkGTgjxxtkmvPainpaAkJWVoiLTQK9
+
+#v2
+
+Metadata of "myuniswapproxy" was published successfully.
+browser/MyUniswapProxy.sol : 
+dweb:/ipfs/QmZC3urtW6CwjBWzVPyZ6KPd1Wwgwo4djgDWrUeKd87LMZ
+metadata.json : 
+dweb:/ipfs/QmWDusRz7VHFLdtbm7G5SLQfEZyaYei3oaRfkUcu8okeR9
+https://etherscan.io/address/0x9825F3cd881D9320c6eaD5bcB4962d5c8743726E#writeContract
+
+Metadata of "ercindex" was published successfully.
+browser/ERCIndex_flat.sol : 
+dweb:/ipfs/QmQzgpG2E3oV3Acse196zfS4QZ8Zyhv8iiB4JzwBX31Suy
+metadata.json : 
+dweb:/ipfs/QmZfc3nrVYoDKLaPxsQvLDzraQqHf3W7ZJpehr69ZcSMBX
+https://etherscan.io/address/0xAa08765440eafD580654Cdf66c0e055BEdd8AA2C#code

@@ -1,0 +1,111 @@
+.about-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  line-height: 32px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h2 {
+  margin: 2rem 0;
+}
+
+.paragraph {
+  box-shadow: inset 8px 0px #dcdef1;
+  padding-left: 1rem;
+  &:first-of-type {
+    margin-top: 3rem;
+  }
+}
+
+.about-image {
+  position: absolute;
+  width:100%;
+  top: 0;
+  height: 100%;
+  img {
+    // filter: invert(83%) sepia(81%) saturate(2064%) hue-rotate(180deg) brightness(111%) contrast(108%);
+    filter: invert(32%) sepia(91%) saturate(578%) hue-rotate(196deg) brightness(85%) contrast(96%) opacity(0.08);
+    // opacity: 0.08;
+    width: min(50vw, 100vh);
+    position: absolute;
+    // right: -6rem;
+    left: calc(50% + 6rem);
+    top: 6rem;
+  }
+  z-index: -1;
+}
+
+@media only screen and (max-width: 600px) {
+  .about-text {
+    max-width: 100%!important;
+  }
+  .token-table {
+    > div {
+      padding: 0.5rem 0.5rem!important;
+    }
+  }
+}
+
+.about-text {
+  max-width: min(750px, 80vw);
+  margin: auto;
+  // padding-top: 4rem;
+  // padding-bottom: 4rem;
+  padding: 3rem 1rem;
+  z-index: 1;
+}
+
+p {
+  line-height: 1.5rem;
+  word-break: break-word;
+}
+
+a {
+  cursor: pointer;
+  color: var(--dark-background);
+  text-decoration: underline;
+}
+
+.token-table {
+  display: flex;
+  align-items: center;
+  > div {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    max-width: 10rem;
+    align-items: center;
+    .table-row {
+      display: flex;
+      height: 2rem;
+      align-items: center;
+      >span {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .order {
+      padding-top:0.5rem;
+      text-align: center;
+    }
+  }
+  .arrow {
+    position: relative;
+    bottom: 1rem;
+    border: solid #dcdef1;
+    border-width: 0 5px 5px 0;
+    min-width: 0.5rem;
+    max-width: 0.5rem;
+    min-height: 0.5rem;
+    max-height: 0.5rem;
+    margin-right: 8px;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+  }
+}

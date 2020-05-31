@@ -1,0 +1,17 @@
+<div class="table-title">
+  <span>History</span>
+  <mat-progress-spinner class="spinner" *ngIf="dataLoading"
+    [color]="'primary'"
+    [diameter]="24"
+    [mode]="'indeterminate'">
+  </mat-progress-spinner>
+  <mat-button-toggle-group #group="matButtonToggleGroup" (change)="selectTimeFrame($event)" selected="0">
+    <mat-button-toggle value="0" checked="true" aria-label="Seven days">7d</mat-button-toggle>
+    <mat-button-toggle value="1" aria-label="One month">1m</mat-button-toggle>
+    <mat-button-toggle value="2" aria-label="One year">1y</mat-button-toggle>
+    <mat-button-toggle value="3" aria-label="All">All</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<div class="chart-wrapper">
+  <canvas id="myChart"></canvas>
+</div>
